@@ -14,12 +14,13 @@ int main (int argc __attribute__((unused)),
 	char *line;
 
 	(void) argv;
-	
-	signal(SIGINT, ctrl_C);
-
+/*	
+ *	signal(SIGINT, ctrl_C);
+ */
 	while (1)
 	{
-		print(" ($) ", STDOUT_FILENO);
+	/*	print(" ($) ", STDOUT_FILENO); */
 		line = _getline();
+		printf("hsh: %s\n", line);
 	}
 }
