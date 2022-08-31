@@ -48,9 +48,11 @@ void execute(char **, int);
 int print(char *, int);
 void (*get_func(char *))(char **);
 
+
 /* shell string functions */
 int _strlen(char *);
 int _strcmp(char*, char *);
+int _putchar(char c);
 
 
 /* shell memory management */
