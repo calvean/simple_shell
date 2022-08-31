@@ -56,7 +56,7 @@ int _putchar(char c);
 
 
 /* shell memory management */
-void *_realloc(void *, int, int);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 
 /* environment path */
