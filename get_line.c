@@ -4,7 +4,7 @@
 
 /**
  * _getline - read iput from stdin or file
- * 
+ *
  * Return: pointer
  */
 char *_getline(void)
@@ -13,7 +13,7 @@ char *_getline(void)
 	int pos = 0;
 	char *buffer = malloc(sizeof(char) * bufsize);
 	int c;
-	
+
 	if (!buffer)
 	{
 		fprintf(stderr, "hsh: allocation error\n");
@@ -22,7 +22,7 @@ char *_getline(void)
 	while (1)
 	{
 		c = getchar();
-		
+
 		if (c == EOF || c == '\n')
 		{
 			buffer[pos] = '\0';
