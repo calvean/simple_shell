@@ -1,40 +1,62 @@
 #include "shell.h"
-#include <stdlib.h>
 
 /**
- * _realloc - reallocates a memory block
- * @ptr: pointer to prev allocated memory
- * @old_size: size of allocated space for ptr
- * @new_size: size of newly allocated space
+ **_memset - fills memory with a constant byte
+ *@s: the pointer to the memory area
+ *@b: the byte to fill *s with
+ *@n: the amount of bytes to be filled
+ *Return: (s) a pointer to the memory area s
+ */
+char *_memset(char *s, char b, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+		s[i] = b;
+	return (s);
+}
+
+/**
+ * ffree - frees a string of strings
+ * @pp: string of strings
+ */
+void ffree(char **pp)
+{
+	char **a = pp;
+
+	if (!pp)
+		return;
+	while (*pp)
+		free(*pp++);
+	free(a);
+}
+
+/**
+ * _realloc - reallocates a block of memory
+ * @ptr: pointer to previous malloc'ated block
+ * @old_size: byte size of previous block
+ * @new_size: byte size of new block
  *
- * Return: pointer to newly allocated memory, or NULL if failure
+ * Return: pointer to da ol'block nameen.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *p;
-	unsigned int i, max = new_size;
-	char *oldp = ptr;
 
-	if (ptr == NULL)
-	{
-		p = malloc(new_size);
-		return (p);
-	}
-	else if (new_size == 0)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	else if (new_size == old_size)
+	if (!ptr)
+		return (malloc(new_size));
+	if (!new_size)
+		return (free(ptr), NULL);
+	if (new_size == old_size)
 		return (ptr);
 
 	p = malloc(new_size);
-	if (p == NULL)
+	if (!p)
 		return (NULL);
-	if (new_size > old_size)
-		max = old_size;
-	for (i = 0; i < max; i++)
-		p[i] = oldp[i];
+
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		p[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
 	return (p);
 }
